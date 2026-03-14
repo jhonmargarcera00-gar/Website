@@ -74,8 +74,8 @@
                     const user = { name, email, password, isAdmin };
                     if (isAdmin) {
                         const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-                        if (admins.length >= 2) {
-                            alert('Admin registration limit reached (2 max).');
+                        if (admins.length >= 1) {
+                            alert('Admin registration limit reached (1 max).');
                             return;
                         }
                         admins.push(user);
