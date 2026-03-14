@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Garcera__Calcu</string>
+    <string name="result_label">RESULT</string>
+    <string name="first_number_label">FIRST NUMBER</string>
+    <string name="second_number_label">SECOND NUMBER</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">*</string>
+    <string name="divide">/</string>
+</resources>
