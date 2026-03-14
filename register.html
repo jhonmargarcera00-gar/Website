@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Jhon Mar Garcera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :focus {
+            outline: 3px solid #8b5cf6;
+            outline-offset: 4px;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 w-full z-40 glass">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
+            <a href="portfolio.html" class="text-xl font-bold tracking-tight text-violet-400">JhonMar.dev</a>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+
+                <li><a href="login.html" class="hover:text-violet-400 transition-colors">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="glass p-10 rounded-3xl w-full max-w-md space-y-8">
+            <h2 class="text-4xl font-bold text-center">Register</h2>
+            <form action="#" class="space-y-6">
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="text-sm font-semibold">Full Name</label>
+                    <input type="text" id="name" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="email" class="text-sm font-semibold">Email Address</label>
+                    <input type="email" id="email" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="password" class="text-sm font-semibold">Password</label>
+                    <input type="password" id="password" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="confirm-password" class="text-sm font-semibold">Confirm Password</label>
+                    <input type="password" id="confirm-password" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="admin" class="bg-slate-900 border border-slate-800 rounded focus:ring-2 focus:ring-violet-500">
+                    <label for="admin" class="text-sm font-semibold">Register as Admin</label>
+                </div>
+                <button type="submit" class="w-full bg-violet-600 py-4 rounded-xl font-bold hover:bg-violet-700 shadow-lg shadow-violet-500/20 transition-all">Register</button>
+            </form>
+            <p class="text-center text-slate-400">Already have an account? <a href="login.html" class="text-violet-400 hover:text-violet-300">Login here</a></p>
+        </div>
+    </main>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const isAdmin = document.getElementById('admin').checked;
+            if (name && email && password && confirmPassword) {
+                if (password === confirmPassword) {
+                    const user = { name, email, password, isAdmin };
+                    if (isAdmin) {
+                        const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+                        if (admins.length >= 2) {
+                            alert('Admin registration limit reached (2 max).');
+                            return;
+                        }
+                        admins.push(user);
+                        localStorage.setItem('admins', JSON.stringify(admins));
+                    } else {
+                        const users = JSON.parse(localStorage.getItem('users') || '[]');
+                        users.push(user);
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+                    alert('Registration successful!');
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Passwords do not match.');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+
+</body>
+</html>

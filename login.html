@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jhon Mar Garcera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :focus {
+            outline: 3px solid #8b5cf6;
+            outline-offset: 4px;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 w-full z-40 glass">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
+            <a href="portfolio.html" class="text-xl font-bold tracking-tight text-violet-400">JhonMar.dev</a>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+
+                <li><a href="register.html" class="hover:text-violet-400 transition-colors">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="glass p-10 rounded-3xl w-full max-w-md space-y-8">
+            <h2 class="text-4xl font-bold text-center">Login</h2>
+            <form action="#" class="space-y-6">
+                <div class="flex flex-col gap-2">
+                    <label for="email" class="text-sm font-semibold">Email Address</label>
+                    <input type="email" id="email" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="password" class="text-sm font-semibold">Password</label>
+                    <input type="password" id="password" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-violet-600 py-4 rounded-xl font-bold hover:bg-violet-700 shadow-lg shadow-violet-500/20 transition-all">Login</button>
+            </form>
+            <p class="text-center text-slate-400">Don't have an account? <a href="register.html" class="text-violet-400 hover:text-violet-300">Register here</a></p>
+        </div>
+    </main>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (email && password) {
+                // Check admins first
+                const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+                const admin = admins.find(a => a.email === email && a.password === password);
+                if (admin) {
+                    localStorage.setItem('loggedIn', 'true');
+                    localStorage.setItem('isAdmin', 'true');
+                    alert('Admin login successful!');
+                    window.location.href = 'admin/index.html';
+                    return;
+                }
+                // Check users
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+                if (user) {
+                    localStorage.setItem('loggedIn', 'true');
+                    localStorage.setItem('isAdmin', 'false');
+                    alert('Login successful!');
+                    window.location.href = 'user/index.html';
+                    return;
+                }
+                alert('Invalid email or password.');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+
+</body>
+</html>

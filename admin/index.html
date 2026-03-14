@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Jhon Mar Garcera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :focus {
+            outline: 3px solid #8b5cf6;
+            outline-offset: 4px;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 w-full z-40 glass">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
+            <a href="../user/index.html" class="text-xl font-bold tracking-tight text-violet-400">JhonMar Website</a>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <li><a href="#about" class="hover:text-violet-400 transition-colors">About</a></li>
+                <li><a href="#projects" class="hover:text-violet-400 transition-colors">Projects</a></li>
+            
+                <li><button onclick="logout()" class="bg-violet-600 px-5 py-2 rounded-full hover:bg-violet-700 transition-all">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="min-h-screen pt-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <h1 class="text-4xl font-bold mb-8 text-center">Admin Dashboard</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Registered Users -->
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-4 text-violet-400">Registered Users</h2>
+                    <p class="text-slate-400 mb-4">Total users: <span id="user-count">0</span></p>
+                    <button onclick="viewUsers()" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700">View Users</button>
+                </div>
+                <!-- Admins -->
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-4 text-violet-400">Admins</h2>
+                    <p class="text-slate-400 mb-4">Total admins: <span id="admin-count">0</span></p>
+                    <button onclick="viewAdmins()" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700">View Admins</button>
+                </div>
+                <!-- Messages -->
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-4 text-violet-400">Messages <span id="new-msg-indicator" class="hidden bg-red-500 text-white text-xs px-2 py-1 rounded-full">NEW</span></h2>
+                    <p class="text-slate-400 mb-4">Total messages: <span id="message-count">0</span></p>
+                    <button onclick="viewMessages()" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700">View Messages</button>
+                </div>
+            </div>
+            <!-- User List -->
+            <div id="user-list" class="mt-8 glass p-6 rounded-2xl hidden">
+                <h2 class="text-2xl font-bold mb-4">User List</h2>
+                <div id="users"></div>
+            </div>
+            <!-- Admin List -->
+            <div id="admin-list" class="mt-8 glass p-6 rounded-2xl hidden">
+                <h2 class="text-2xl font-bold mb-4">Admin List</h2>
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold mb-2">Add New Admin</h3>
+                    <input type="text" id="admin-name" placeholder="Name" class="bg-slate-800 p-2 rounded mb-2 w-full">
+                    <input type="email" id="admin-email" placeholder="Email" class="bg-slate-800 p-2 rounded mb-2 w-full">
+                    <input type="password" id="admin-password" placeholder="Password" class="bg-slate-800 p-2 rounded mb-2 w-full">
+                    <button onclick="addAdmin()" class="bg-green-600 px-4 py-2 rounded">Add Admin</button>
+                </div>
+                <div id="admins"></div>
+            </div>
+            <!-- Message List -->
+            <div id="message-list" class="mt-8 glass p-6 rounded-2xl hidden">
+                <h2 class="text-2xl font-bold mb-4">Message List</h2>
+                <div id="messages"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900/50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                Hailing from the coastal beauty of Matnog, Sorsogon, I am Jhon Mar Garcera, a Computer Science student at CCDI Sorsogon with a vision that extends far beyond the horizon. My journey in tech is driven by a deep-seated curiosity about how the digital world functions—not just on the surface, but from the very first line of back-end logic to the final pixel of the front-end interface. As an aspiring Full Stack Developer, I view coding as more than just a technical skill; it is a medium for problem-solving and a gateway to building impactful digital solutions.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+                Being a student at CCDI has provided me with a rigorous foundation, but my ambition pushes me to constantly explore the ever-evolving landscape of modern frameworks and architectures. I am dedicated to bridging the gap between functional server-side stability and intuitive, user-centric design. Whether I'm architecting databases or refining UI components, my goal remains the same: to create seamless, end-to-end web experiences that empower users and push the boundaries of what's possible in the Bicol region's growing tech scene and beyond.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-16 text-center">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">CameraAppV1</h3>
+                    <p class="text-slate-400 mb-4">Android camera application.</p>
+                    <a href="https://github.com/jhonmargarcera00-gar/CameraAppV1.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">Finance</h3>
+                    <p class="text-slate-400 mb-4">Flask-based finance application.</p>
+                    <a href="https://github.com/jhonmargarcera00-gar/Finance.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                </div>
+                 <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">Me50</h3>
+                    <p class="text-slate-400 mb-4">Cs50: Introduction to Computer Science.</p>
+                    <a href="https://github.com/me50/jhonmargarcera00-gar.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">Garcera__Calculator</h3>
+                    <p class="text-slate-400 mb-4">Android calculator app.</p>
+                    <a href="https://github.com/jhonmargarcera00-gar/Garcera__Calculator.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">Prelim_Garcera_555</h3>
+                    <p class="text-slate-400 mb-4">Preliminary Android project.</p>
+                    <a href="https://github.com/jhonmargarcera00-gar/Prelim_Garcera_555.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-violet-400">BSCS2A-HOTTIES</h3>
+                    <p class="text-slate-400 mb-4">Group project website featuring individual member pages.</p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/jhonmargarcera00-gar/BSCS2A-HOTTIES.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                        <a href="https://jhonmargarcera00-gar.github.io/BSCS2A-HOTTIES/" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View Live Site</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check if admin
+        if (localStorage.getItem('isAdmin') !== 'true') {
+            window.location.href = '../index.html';
+        }
+
+        // Load counts
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+        const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+        document.getElementById('user-count').textContent = users.length;
+        document.getElementById('admin-count').textContent = admins.length;
+        document.getElementById('message-count').textContent = messages.length;
+        
+        // Show new message indicator
+        if (localStorage.getItem('newMessages') === 'true') {
+            document.getElementById('new-msg-indicator').classList.remove('hidden');
+        }
+
+        function viewUsers() {
+            const userList = document.getElementById('user-list');
+            const usersDiv = document.getElementById('users');
+            usersDiv.innerHTML = users.map((u, index) => `<p>${u.name} - ${u.email} <button onclick="makeAdmin(${index})" class="bg-blue-600 px-2 py-1 rounded mr-2">Make Admin</button><button onclick="deleteUser(${index})" class="bg-red-600 px-2 py-1 rounded">Delete</button></p>`).join('');
+            userList.classList.remove('hidden');
+            document.getElementById('admin-list').classList.add('hidden');
+            document.getElementById('message-list').classList.add('hidden');
+        }
+
+        function viewAdmins() {
+            const adminList = document.getElementById('admin-list');
+            const adminsDiv = document.getElementById('admins');
+            adminsDiv.innerHTML = admins.map((a, index) => `<p>${a.name} - ${a.email} <button onclick="deleteAdmin(${index})" class="bg-red-600 px-2 py-1 rounded">Delete</button></p>`).join('');
+            adminList.classList.remove('hidden');
+            document.getElementById('user-list').classList.add('hidden');
+            document.getElementById('message-list').classList.add('hidden');
+        }
+
+        function viewMessages() {
+            const messageList = document.getElementById('message-list');
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = messages.map((m, index) => `
+                <div class="mb-4 p-4 bg-slate-800 rounded-lg">
+                    <p><strong>Name:</strong> ${m.name}</p>
+                    <p><strong>Email:</strong> ${m.email}</p>
+                    <p><strong>Date:</strong> ${new Date(m.date).toLocaleString()}</p>
+                    <p><strong>Message:</strong> ${m.message}</p>
+                    <button onclick="deleteMessage(${index})" class="bg-red-600 px-2 py-1 rounded">Delete</button>
+                </div>
+            `).join('');
+            messageList.classList.remove('hidden');
+            document.getElementById('user-list').classList.add('hidden');
+            document.getElementById('admin-list').classList.add('hidden');
+            window.location.hash = 'messages';
+            
+            // Mark messages as read
+            localStorage.removeItem('newMessages');
+            document.getElementById('new-msg-indicator').classList.add('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('isAdmin');
+            window.location.href = '../index.html';
+        }
+
+        function addAdmin() {
+            const name = document.getElementById('admin-name').value;
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            if (name && email && password) {
+                admins.push({name, email, password});
+                localStorage.setItem('admins', JSON.stringify(admins));
+                document.getElementById('admin-name').value = '';
+                document.getElementById('admin-email').value = '';
+                document.getElementById('admin-password').value = '';
+                viewAdmins();
+                document.getElementById('admin-count').textContent = admins.length;
+            }
+        }
+
+        function deleteAdmin(index) {
+            admins.splice(index, 1);
+            localStorage.setItem('admins', JSON.stringify(admins));
+            viewAdmins();
+            document.getElementById('admin-count').textContent = admins.length;
+        }
+
+        function deleteUser(index) {
+            users.splice(index, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+            viewUsers();
+            document.getElementById('user-count').textContent = users.length;
+        }
+
+        function deleteMessage(index) {
+            messages.splice(index, 1);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            viewMessages();
+            document.getElementById('message-count').textContent = messages.length;
+        }
+
+        function makeAdmin(index) {
+            const user = users.splice(index, 1)[0];
+            admins.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('admins', JSON.stringify(admins));
+            viewUsers();
+            document.getElementById('user-count').textContent = users.length;
+            document.getElementById('admin-count').textContent = admins.length;
+        }
+    </script>
+
+</body>
+</html>

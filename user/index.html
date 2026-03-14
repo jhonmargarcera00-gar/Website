@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhon Mar Garcera | Full Stack Developer & Prompt Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Focus Indicator for Keyboard Users [12] */
+        :focus {
+            outline: 3px solid #8b5cf6;
+            outline-offset: 4px;
+        }
+        /* Glassmorphism for a professional UI [13] */
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-violet-500/30">
+
+    <!-- Accessible Skip Link [14] -->
+    <a href="#main" class="absolute -top-20 left-4 focus:top-4 bg-violet-600 px-4 py-2 rounded-md z-50 transition-all">
+        Skip to content
+    </a>
+
+    <!-- Sticky Navigation [13, 15] -->
+    <header class="fixed top-0 w-full z-40 glass">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
+            <span class="text-xl font-bold tracking-tight text-violet-400">JhonMar Website</span>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <li><a href="#about" class="hover:text-violet-400 transition-colors">About</a></li>
+                <li><a href="#skills" class="hover:text-violet-400 transition-colors">Tech Stack</a></li>
+                <li><a href="#projects" class="hover:text-violet-400 transition-colors">Projects</a></li>
+                <li id="nav-login"><a href="../login.html" class="hover:text-violet-400 transition-colors">Login</a></li>
+                <li id="nav-register"><a href="../register.html" class="hover:text-violet-400 transition-colors">Register</a></li>
+                <li><button onclick="logout()" class="bg-violet-600 px-5 py-2 rounded-full hover:bg-violet-700 transition-all">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <!-- Hero Section [16, 17] -->
+        <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+            <div class="text-center space-y-6 max-w-4xl">
+                <p class="text-violet-400 font-mono tracking-widest uppercase">Based in Matnog, Sorsogon</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter">
+                    I build <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-500">scalable apps</span> and <span class="italic">intelligent prompts.</span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Hi, I'm **Jhon Mar Garcera**. I bridge the gap between robust Full Stack architecture and the future of AI through specialized Prompt Engineering.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center pt-6">
+                    <a href="#projects" class="bg-violet-600 px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">Explore My Work</a>
+                    <a href="#contact" class="border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-900 transition-all">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-slate-900/50">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Hailing from the coastal beauty of Matnog, Sorsogon, I am Jhon Mar Garcera, a Computer Science student at CCDI Sorsogon with a vision that extends far beyond the horizon. My journey in tech is driven by a deep-seated curiosity about how the digital world functions—not just on the surface, but from the very first line of back-end logic to the final pixel of the front-end interface. As an aspiring Full Stack Developer, I view coding as more than just a technical skill; it is a medium for problem-solving and a gateway to building impactful digital solutions.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Being a student at CCDI has provided me with a rigorous foundation, but my ambition pushes me to constantly explore the ever-evolving landscape of modern frameworks and architectures. I am dedicated to bridging the gap between functional server-side stability and intuitive, user-centric design. Whether I'm architecting databases or refining UI components, my goal remains the same: to create seamless, end-to-end web experiences that empower users and push the boundaries of what's possible in the Bicol region's growing tech scene and beyond.
+                </p>
+            </div>
+        </section>
+
+        <!-- Specialized Tech Stack [18] -->
+        <section id="skills" class="py-24 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-16 text-center">My Tech Stack & Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Full Stack [19] -->
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">Full Stack Development</h3>
+                        <p class="text-slate-400 mb-4">Crafting high-performance web applications from database logic to interactive UIs.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500 uppercase">
+                            <li class="bg-slate-900 px-2 py-1 rounded">React</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">Node.js</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">PostgreSQL</li>
+                        </ul>
+                    </div>
+                    <!-- Prompt Engineering [5, 20] -->
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-fuchsia-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-fuchsia-400">Prompt Engineering</h3>
+                        <p class="text-slate-400 mb-4">Optimizing LLM interactions through structured prompt design and RAG implementations.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500 uppercase">
+                            <li class="bg-slate-900 px-2 py-1 rounded">GPT-4</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">Claude</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">Vector DBs</li>
+                        </ul>
+                    </div>
+                    <!-- UI/UX [21] -->
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-blue-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Creative Design</h3>
+                        <p class="text-slate-400 mb-4">Ensuring accessibility (WCAG) and modern aesthetics are at the core of every project.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500 uppercase">
+                            <li class="bg-slate-900 px-2 py-1 rounded">Figma</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">Tailwind</li>
+                            <li class="bg-slate-900 px-2 py-1 rounded">A11Y</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-16 text-center">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">CameraAppV1</h3>
+                        <p class="text-slate-400 mb-4">Android camera application.</p>
+                        <a href="https://github.com/jhonmargarcera00-gar/CameraAppV1.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">Finance</h3>
+                        <p class="text-slate-400 mb-4">Flask-based finance application.</p>
+                        <a href="https://github.com/jhonmargarcera00-gar/Finance.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">Garcera__Calculator</h3>
+                        <p class="text-slate-400 mb-4">Android calculator app.</p>
+                        <a href="https://github.com/jhonmargarcera00-gar/Garcera__Calculator.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">Prelim_Garcera_555</h3>
+                        <p class="text-slate-400 mb-4">Preliminary Android project.</p>
+                        <a href="https://github.com/jhonmargarcera00-gar/Prelim_Garcera_555.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-slate-950 border border-slate-800 hover:border-violet-500/50 transition-all group">
+                        <h3 class="text-xl font-bold mb-4 text-violet-400">BSCS2A-HOTTIES</h3>
+                        <p class="text-slate-400 mb-4">Group project website featuring individual member pages.</p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/jhonmargarcera00-gar/BSCS2A-HOTTIES.git" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View on GitHub</a>
+                            <a href="https://jhonmargarcera00-gar.github.io/BSCS2A-HOTTIES/" class="bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-700 transition-all">View Live Site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section [22, 23] -->
+        <section id="contact" class="py-24 container mx-auto px-6 max-w-4xl">
+            <div class="glass p-10 rounded-3xl text-center space-y-8">
+                <h2 class="text-4xl font-bold">Let's build something <span class="italic">extraordinary.</span></h2>
+                <p class="text-slate-400">Currently open to freelance opportunities and Full Stack roles worldwide from Matnog, Sorsogon.</p>
+                <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="flex flex-col gap-2">
+                        <label for="name" class="text-sm font-semibold">Your Name</label>
+                        <input type="text" id="name" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="email" class="text-sm font-semibold">Email Address</label>
+                        <input type="email" id="email" required class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none">
+                    </div>
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label for="message" class="text-sm font-semibold">Your Message</label>
+                        <textarea id="message" rows="4" class="bg-slate-900 border border-slate-800 p-3 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="md:col-span-2 bg-violet-600 py-4 rounded-xl font-bold hover:bg-violet-700 shadow-lg shadow-violet-500/20 transition-all">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 border-t border-slate-900 text-center text-slate-500 text-sm">
+        <p>&copy; <span id="year"></span> Jhon Mar Garcera. Handcrafted with passion in Sorsogon.</p>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('nav-login').style.display = 'none';
+            document.getElementById('nav-register').style.display = 'none';
+        }
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('isAdmin');
+            window.location.href = '../index.html';
+        }
+        // Handle contact form submission
+        const contactForm = document.querySelector('#contact form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const subject = 'New Message from Portfolio Website';
+            const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            
+            // Store message in localStorage
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.push({ name, email, message, date: new Date().toISOString() });
+            localStorage.setItem('messages', JSON.stringify(messages));
+            localStorage.setItem('newMessages', 'true'); // Notification flag
+            
+            // Send via mailto
+            window.location.href = `mailto:jhonmargarcera00@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+    </script>
+</body>
+</html>
